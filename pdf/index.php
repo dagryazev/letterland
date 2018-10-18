@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 include './generatePDF.php';
 ob_start();
 include './words.json';
