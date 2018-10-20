@@ -5,8 +5,7 @@
  * Date: 18.10.2018
  * Time: 10:26
  */
-require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/pdf.php';
+require_once '../mPDF/vendor/autoload.php';
 
 class generatePDF{
     private $arrayParametrs =  array (
