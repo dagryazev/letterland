@@ -239,8 +239,8 @@
     'use strict';
 
     let button_clear = document.getElementsByClassName("button_clear")[0];
-    let collection_words_input = document.getElementsByName("words[]");
-    button_clear.onclick = function (){
+    let collection_words_input = document.querySelectorAll("[name='words[]']");
+    button_clear.onclick = function ( event ){
         event.preventDefault();
         Array.prototype.map.call(collection_words_input, function(key, value){
             key.value = '';
