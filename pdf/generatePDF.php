@@ -23,7 +23,7 @@ class generatePDF{
             $this->arrayParametrs = array_replace($this->arrayParametrs, $parametrs );
     }
 
-    private function createHTML($words /*Передается в pdf.php*/){
+    private function createHTML($words /*Передается в pdf.php*/, $amount){
         ob_start();
             include __DIR__ . '/pdf.php';
         $string = ob_get_clean();
@@ -51,10 +51,10 @@ class generatePDF{
         }else $arrayWord[] = $this->arrayParametrs['arrayWord'];
 
         foreach ( $arrayWord as $key => $value){
-            if( count($value) == 1 || count($value) == 4){
+            if( $this->arrayParametrs['amountWord'] == 1 || $this->arrayParametrs['amountWord'] == 4){
                 $mpdf->AddPage("L");
             }else $mpdf->AddPage("p");
-            $mpdf->WriteHTML($this->createHTML($value));
+            $mpdf->WriteHTML($this->createHTML($value, $this->arrayParametrs['amountWord']));
         }
 
         $mpdf->Output();

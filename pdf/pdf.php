@@ -25,7 +25,7 @@
     </style>
 </head>
 <body>
-<?php switch( count($words) ):
+<?php switch( $amount ):
     case 1:?>
 
         <table>
@@ -50,6 +50,7 @@
         case 2:?>
 
         <table>
+            <?php if( $words[0] ):?>
             <tr>
                 <td style="font-size: 124px; text-align: center; height: 9cm;">
                     <?php print_r( $words[0] );?>
@@ -65,6 +66,8 @@
                     letterland.ru
                 </td>
             </tr>
+            <?php endif;?>
+            <?php if( $words[1] ):?>
             <tr>
                 <td style="font-size: 124px; text-align: center; height: 9cm;">
                     <?php print_r( $words[1] );?>
@@ -80,13 +83,16 @@
                     letterland.ru
                 </td>
             </tr>
+            <?php endif;?>
         </table>
 
         <?php break;
             case 4:?>
             <table>
                 <tr>
+
                     <td style="width: 50%; height: 20%;">
+                        <?php if( $words[0] ):?>
                         <table style="border-right: 1px dashed #000;border-bottom: 1px dashed #000;">
                             <tr>
                                 <td style="font-size: 124px; text-align: center; height: 5.71cm;">
@@ -104,8 +110,12 @@
                                 </td>
                             </tr>
                         </table>
+                        <?php endif;?>
                     </td>
+
+
                     <td style="width: 50%; height: 20%;">
+                        <?php if( $words[1] ):?>
                         <table style="border-bottom: 1px dashed #000;">
                             <tr>
                                 <td style="font-size: 124px; text-align: center; height: 5.71cm;">
@@ -123,10 +133,14 @@
                                 </td>
                             </tr>
                         </table>
+                        <?php endif;?>
                     </td>
+
                 </tr>
                 <tr>
+
                     <td style="width: 50%;">
+                        <?php if( $words[2] ):?>
                         <table style="border-right: 1px dashed #000;">
                             <tr>
                                 <td style="font-size: 124px; text-align: center; height: 5.71cm;">
@@ -144,8 +158,12 @@
                                 </td>
                             </tr>
                         </table>
+                        <?php endif;?>
                     </td>
+
+
                     <td style="width: 50%;">
+                        <?php if( $words[3] ):?>
                         <table>
                             <tr>
                                 <td style="font-size: 124px; text-align: center; height: 5.71cm;">
@@ -163,7 +181,9 @@
                                 </td>
                             </tr>
                         </table>
+                        <?php endif;?>
                     </td>
+
                 </tr>
             </table>
             <?php break;?>
