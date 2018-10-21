@@ -5,6 +5,7 @@
     <style>
         @page{
             margin: 100%;
+            font-family: 'Impact';
         }
         *{
             margin: 0;

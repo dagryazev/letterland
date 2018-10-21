@@ -8,6 +8,9 @@
         label{
             font-weight: 500;
         }
+        h2{
+            margin-top: 20px;
+        }
         @media (min-width: 992px){
             .padding__row{
                 margin-top: 25px;
@@ -22,9 +25,22 @@
             width: 100%;
         }
         .button_send{
+             display: inline-block;
+             margin-top: 25px;
+             background: #f10d1a no-repeat left 25px center;
+             padding: 8px 22px;
+             color: #fff;
+             text-align: center;
+             font-size: 18px;
+             border-radius: 5px;
+             border: none;
+             font-family: 'Calibri';
+             cursor: pointer;
+         }
+        .button_clear{
+            display: inline-block;
             margin-top: 25px;
-            display: block;
-            background: #f10d1a no-repeat left 25px center;
+            background: #137fca no-repeat left 25px center;
             padding: 8px 22px;
             color: #fff;
             text-align: center;
@@ -34,10 +50,11 @@
             font-family: 'Calibri';
             cursor: pointer;
         }
+
     </style>
 </head>
 <body>
-<form action="pdf/index.php" method="POST" target="_blank">
+<form action="pdf/index.php?type=getWords" method="POST" target="_blank">
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -46,7 +63,7 @@
     </div>
     <div class="row">
         <div class="col-lg-4">
-            <input type="radio" value="1" name="amount_word" />
+            <input type="radio" value="1" name="amount_word" checked/>
             <label>Full-Page Flash Card</label>
         </div>
         <div class="col-lg-4">
@@ -67,44 +84,54 @@
         <div class="col-lg-2">
             <input type="checkbox" value="1" name="list_number[]" />
             <label>1st 100</label>
+            <a href="pdf/index.php?type=getListWords&id_list_number=1" target="_blank">(список)</a>
         </div>
         <div class="col-lg-2">
             <input type="checkbox" value="2" name="list_number[]" />
             <label>2st 100</label>
+            <a href="pdf/index.php?type=getListWords&id_list_number=2" target="_blank">(список)</a>
         </div>
         <div class="col-lg-2">
             <input type="checkbox" value="3" name="list_number[]" />
             <label>3st 100</label>
+            <a href="pdf/index.php?type=getListWords&id_list_number=3" target="_blank">(список)</a>
         </div>
         <div class="col-lg-2">
             <input type="checkbox" value="4" name="list_number[]" />
             <label>4st 100</label>
+            <a href="pdf/index.php?type=getListWords&id_list_number=4" target="_blank">(список)</a>
         </div>
         <div class="col-lg-2">
             <input type="checkbox" value="5" name="list_number[]" />
             <label>5st 100</label>
+            <a href="pdf/index.php?type=getListWords&id_list_number=5" target="_blank">(список)</a>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-2">
             <input type="checkbox" value="6" name="list_number[]" />
             <label>6st 100</label>
+            <a href="pdf/index.php?type=getListWords&id_list_number=6" target="_blank">(список)</a>
         </div>
         <div class="col-lg-2">
             <input type="checkbox" value="7" name="list_number[]" />
             <label>7st 100</label>
+            <a href="pdf/index.php?type=getListWords&id_list_number=7" target="_blank">(список)</a>
         </div>
         <div class="col-lg-2">
             <input type="checkbox" value="8" name="list_number[]" />
             <label>8st 100</label>
+            <a href="pdf/index.php?type=getListWords&id_list_number=8" target="_blank">(список)</a>
         </div>
         <div class="col-lg-2">
             <input type="checkbox" value="9" name="list_number[]" />
             <label>9st 100</label>
+            <a href="pdf/index.php?type=getListWords&id_list_number=9" target="_blank">(список)</a>
         </div>
         <div class="col-lg-2">
             <input type="checkbox" value="10" name="list_number[]" />
             <label>10st 100</label>
+            <a href="pdf/index.php?type=getListWords&id_list_number=10" target="_blank">(список)</a>
         </div>
     </div>
     <div class="block_words">
@@ -202,10 +229,24 @@
         <div class="row">
             <div class="col-lg-12">
                 <input type="submit" class="button_send" value="Create Flash Cards"/>
+                <button type="button" class="button_clear">Clear</button>
             </div>
         </div>
     </div>
 </div>
 </form>
+<script>
+    'use strict';
+
+    let button_clear = document.getElementsByClassName("button_clear")[0];
+    let collection_words_input = document.getElementsByName("words[]");
+    button_clear.onclick = function (){
+        event.preventDefault();
+        Array.prototype.map.call(collection_words_input, function(key, value){
+            key.value = '';
+        });
+        return false;
+    }
+</script>
 </body>
 </html>

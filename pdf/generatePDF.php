@@ -29,6 +29,7 @@ class generatePDF{
         $string = ob_get_clean();
         return $string;
     }
+
     public function createPDF(){
         $mpdf = new \Mpdf\Mpdf([
             'format' => 'A4-L',
@@ -36,7 +37,11 @@ class generatePDF{
             'margin_right' => 0,
             'margin_left' => 0,
             'margin_bottom' => 0,
-            'default_font' => 'Lato'
+            'fontdata' => [
+                'comicsans'=>
+                    [ 'R' => 'comic.ttf' ]
+            ],
+            'default_font' => 'comicsans'
         ]);
         $mpdf->SetDisplayMode('fullpage');
 
@@ -53,5 +58,33 @@ class generatePDF{
         }
 
         $mpdf->Output();
+    }
+
+    private function createHTML_ListWordsPDF($words /*Передается в pdf.php*/){
+        ob_start();
+        include __DIR__ . '/ListWordsPDF.php';
+        $string = ob_get_clean();
+        return $string;
+    }
+
+    public function createListWordsPDF(){
+
+        $mpdf = new \Mpdf\Mpdf([
+            'format' => 'A4-P',
+            'margin_top' => 0,
+            'margin_right' => 0,
+            'margin_left' => 0,
+            'margin_bottom' => 0,
+            'fontdata' => [
+                    'comicsans'=>
+                        [ 'R' => 'comic.ttf' ]
+            ],
+            'default_font' => 'comicsans'
+        ]);
+        $mpdf->SetDisplayMode('fullpage');
+        $mpdf->AddPage("p");
+        $mpdf->WriteHTML($this->createHTML_ListWordsPDF($this->arrayParametrs['arrayWord']));
+        $mpdf->Output();
+
     }
 }
